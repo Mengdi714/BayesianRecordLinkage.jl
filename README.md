@@ -3,7 +3,7 @@ Collection of methods for performing Bayesian inference for large-scale record l
 
 ## Installation
 ```julia
-pkg> add https://github.com/Mengdi714/AssignmentSolver.jl
+pkg> add https://github.com/brendanstats/AssignmentSolver.jl
 pkg> add https://github.com/Mengdi714/BayesianRecordLinkage.jl
 ```
 
