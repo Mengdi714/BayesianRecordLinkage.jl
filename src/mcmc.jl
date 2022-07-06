@@ -132,6 +132,9 @@ function mh_gibbs_count(nsteps::Integer, C0::LinkMatrix, compsum::Union{Comparis
         nlinkArray[ii] = C.nlink
         MArray[:, ii] = pM
         UArray[:, ii] = pU
+        nlinkArray
+        MArray
+        UArray
     end
     ParameterChain(counts2indicies(CArray), nlinkArray, permutedims(MArray, [2, 1]), permutedims(UArray, [2, 1]), nsteps, false), transC, C
 end
@@ -238,6 +241,9 @@ function mh_gibbs_trace(
         nlinkArray[ii] = C.nlink
         MArray[:, ii] = pM
         UArray[:, ii] = pU
+        nlinkArray
+        MArray
+        UArray
     end
 
     #add current links to chain
