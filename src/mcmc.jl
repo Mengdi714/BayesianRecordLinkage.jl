@@ -257,5 +257,5 @@ function mh_gibbs_trace(
     end
     
     ## ParameterChain([outrows outcols outstart outstop][outstart .<= outstop, :], nlinkArray, permutedims(MArray, [2, 1]), permutedims(UArray, [2, 1]), nsteps, true), transC, C
-     nlinkArray
+    nlinkArray
 end
