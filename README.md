@@ -41,17 +41,18 @@ using BayesianRecordLinkage, DelimitedFiles, StringDistances, Random
 # Comparison Vector Generation
 ########################################
 ## Load data
-dataA, varA = readdlm("data/dataA.txt", '\t', String, header = true)
-dataB, varB = readdlm("data/dataB.txt", '\t', String, header = true)
+cd("/Users/mengdiliu/desktop/Hons")
+dataA, varA = readdlm("ACM1.txt", '\t', String, header = true)
+dataB, varB = readdlm("DBLP1.txt", '\t', String, header = true)
 
 nA = size(dataA, 1)
 nB = size(dataB, 1)
 
 ## Find fields to compare
-gnameInd = findfirst(x -> x == "gname", vec(varA))
-fnameInd = findfirst(x -> x == "fname", vec(varA))
-ageInd = findfirst(x -> x == "age", vec(varA))
-occupInd = findfirst(x -> x == "occup", vec(varA))
+title = findfirst(x -> x == "title", vec(varA))
+authors = findfirst(x -> x == "authors", vec(varA))
+year = findfirst(x -> x == "year", vec(varA))
+
 
 ## Define function to generate an ordinal comparison between two strings using a Levenshtein sting distance
 function levOrd(s1::String, s2::String)
@@ -79,12 +80,11 @@ function boolOrd(s1::String, s2::String)
 end
 
 ## Generate ordinal comparisons
-ordArray = Array{Int8}(undef, nA, nB, 4)
+ordArray = Array{Int8}(undef, nA, nB, 3)
 for jj in 1:nB, ii in 1:nA
-    ordArray[ii, jj, 1] = levOrd(dataA[ii, gnameInd], dataB[jj, gnameInd])
-    ordArray[ii, jj, 2] = levOrd(dataA[ii, fnameInd], dataB[jj, fnameInd])
-    ordArray[ii, jj, 3] = boolOrd(dataA[ii, ageInd], dataB[jj, ageInd])
-    ordArray[ii, jj, 4] = boolOrd(dataA[ii, occupInd], dataB[jj, occupInd])
+    ordArray[ii, jj, 1] = levOrd(dataA[ii, title], dataB[jj, title])
+    ordArray[ii, jj, 2] = levOrd(dataA[ii, authors], dataB[jj, title])
+    ordArray[ii, jj, 3] = boolOrd(dataA[ii, year], dataB[jj, year])
 end
 
 ## Load into a ComparsionSummary object
